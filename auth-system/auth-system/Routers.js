@@ -5,8 +5,16 @@ const User = require('./User');
 const auth = require('./Auth');
 const router = express.Router();
 const upload = require('./image')
+const dotenv = require('dotenv');
+dotenv.config();
+const mongoose = require('mongoose');
 
-const { JWT_SECRET } = process.env;
+
+
+const JWT_SECRET = process.env.JWT_SECRET;
+const ObjectId = mongoose.Types.ObjectId;
+
+
 
 // User registration
 router.post('/register', upload.single('photo'), async (req, res) => {
@@ -36,11 +44,14 @@ router.post('/register', upload.single('photo'), async (req, res) => {
   
 // User login
 router.post('/login', async (req, res) => {
+    console.log(req.body)
   const { email, password } = req.body;
   const user = await User.findOne({ email });
+
   if (!user) return res.status(400).send({ message: 'Invalid email or password' });
 
   const validPassword = await bcrypt.compare(password, user.password);
+
   if (!validPassword) return res.status(400).send({ message: 'Invalid email or password' });
 
   const token = jwt.sign({ _id: user._id, role: user.role }, JWT_SECRET, { expiresIn: '1h' });
@@ -79,7 +90,8 @@ router.get('/profiles', async (req, res) => {
 
 // View specific user profile
 router.get('/profiles/:id', auth.verifyToken, async (req, res) => {
-  const user = await User.findById(req.params.id).select('-password');
+    console.log(req.params.id)
+    const user = await User.findById(req.params.id).select('-password');
   if (!user) return res.status(404).send({ message: 'User not found' });
 
   if (user.profileVisibility === 'private' && req.user.role !== 'admin') {
