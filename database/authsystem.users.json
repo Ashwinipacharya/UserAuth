@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "66507e91af80c8dc43265539"
+  },
+  "username": "xxx",
+  "email": "x@gmail.com",
+  "password": "$2a$10$i9ETYxp5Jc.2gxiClNse/Oh3EOa0R.rGRIa2ghIzHlmtc/Y1d0Vgi",
+  "name": "Updated Name",
+  "bio": "Updated bio",
+  "phone": "0987654321",
+  "photo": "https://www.bing.com/ck/a?!&&p=9d5be4f8ee8c1cdcJmltdHM9MTcxNjUwODgwMCZpZ3VpZD0yOThlZWNjYS0xNzdjLTY1NWEtMGZhMS1mZTljMTZkMTY0NzEmaW5zaWQ9NTYwOQ&ptn=3&ver=2&hsh=3&fclid=298eecca-177c-655a-0fa1-fe9c16d16471&u=a1L2ltYWdlcy9zZWFyY2g_cT1pbWFnZXMmRk9STT1JUUZSQkEmaWQ9ODJGMkNCMkI2OEQ2MTQzMUJBMzUzNzRFMjdBM0IyQUQ3Q0Y0MTQ4RA&ntb=1",
+  "profileVisibility": "public",
+  "role": "user",
+  "createdAt": {
+    "$date": "2024-05-24T11:48:33.208Z"
+  },
+  "updatedAt": {
+    "$date": "2024-05-24T13:46:10.614Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "66509a7e2fe40f40f8dc4c8e"
+  },
+  "username": "naina",
+  "email": "n@gmail.com",
+  "password": "$2a$10$xG5z2xped7vllArTd6K2QeAuuXfVBMk1ob1AkqV6vRAh2kZHMTLJG",
+  "name": "naina",
+  "bio": "xxxx",
+  "phone": "8792928878",
+  "photo": "https://www.bing.com/ck/a?!&&p=9d5be4f8ee8c1cdcJmltdHM9MTcxNjUwODgwMCZpZ3VpZD0yOThlZWNjYS0xNzdjLTY1NWEtMGZhMS1mZTljMTZkMTY0NzEmaW5zaWQ9NTYwOQ&ptn=3&ver=2&hsh=3&fclid=298eecca-177c-655a-0fa1-fe9c16d16471&u=a1L2ltYWdlcy9zZWFyY2g_cT1pbWFnZXMmRk9STT1JUUZSQkEmaWQ9ODJGMkNCMkI2OEQ2MTQzMUJBMzUzNzRFMjdBM0IyQUQ3Q0Y0MTQ4RA&ntb=1",
+  "profileVisibility": "public",
+  "role": "user",
+  "createdAt": {
+    "$date": "2024-05-24T13:47:42.036Z"
+  },
+  "updatedAt": {
+    "$date": "2024-05-24T13:47:42.036Z"
+  },
+  "__v": 0
+}]
