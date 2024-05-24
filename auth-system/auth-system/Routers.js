@@ -3,9 +3,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('./User');
 const auth = require('./Auth');
+const passport = require('passport');
 const router = express.Router();
 const upload = require('./image')
 const dotenv = require('dotenv');
+
 dotenv.config();
 const mongoose = require('mongoose');
 
@@ -106,5 +108,35 @@ router.get('/admin/profiles', [auth.verifyToken, auth.isAdmin], async (req, res)
   const users = await User.find().select('-password');
   res.send(users);
 });
+
+// Social Media Auth Routes
+router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/auth/google/callback', passport.authenticate('google', { session: false }), (req, res) => {
+  const token = jwt.sign({ _id: req.user._id, role: req.user.role }, JWT_SECRET, { expiresIn: '1h' });
+  res.redirect(`/auth/success?token=${token}`);
+});
+
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+router.get('/auth/facebook/callback', passport.authenticate('facebook', { session: false }), (req, res) => {
+  const token = jwt.sign({ _id: req.user._id, role: req.user.role }, JWT_SECRET, { expiresIn: '1h' });
+  res.redirect(`/auth/success?token=${token}`);
+});
+
+router.get('/auth/twitter', passport.authenticate('twitter'));
+router.get('/auth/twitter/callback', passport.authenticate('twitter', { session: false }), (req, res) => {
+  const token = jwt.sign({ _id: req.user._id, role: req.user.role }, JWT_SECRET, { expiresIn: '1h' });
+  res.redirect(`/auth/success?token=${token}`);
+});
+
+router.get('/auth/github', passport.authenticate('github', { scope: ['user:email'] }));
+router.get('/auth/github/callback', passport.authenticate('github', { session: false }), (req, res) => {
+  const token = jwt.sign({ _id: req.user._id, role: req.user.role }, JWT_SECRET, { expiresIn: '1h' });
+  res.redirect(`/auth/success?token=${token}`);
+});
+
+//logout
+router.post('/logout', (req, res) => {
+    res.status(200).send({ message: 'Logout successful' });
+  });
 
 module.exports = router;
